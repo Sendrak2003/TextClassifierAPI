@@ -1,0 +1,101 @@
+Тестовые данные для Text Classifier API
+==========================================
+
+Основные тестовые случаи:
+--------------------------
+
+1. Закажи пиццу из Domino's на завтра в 18:00, ZIP 90210
+   Ожидается: zip=90210, brand=Domino's, category=пицца, time_pref=завтра в 18:00
+
+2. Нужны кроссовки Nike для бега, доставка в 12345
+   Ожидается: zip=12345, brand=Nike, category=кроссовки, time_pref=null
+
+3. Купить iPhone 15 Pro Max, код 54321
+   Ожидается: zip=54321, brand=iPhone, category=смартфон, time_pref=null
+
+4. Заказать суши из Yoshi Sushi, адрес 10001
+   Ожидается: zip=10001, brand=Yoshi Sushi, category=суши, time_pref=null
+
+5. Хочу футболку Adidas, доставка в 20001
+   Ожидается: zip=20001, brand=Adidas, category=футболка, time_pref=null
+
+6. Закажи кофе из Starbucks на утро, ZIP 30001
+   Ожидается: zip=30001, brand=Starbucks, category=кофе, time_pref=утро
+
+7. Нужна книга Стивена Кинга, почтовый код 40001
+   Ожидается: zip=40001, brand=null, category=книга, time_pref=null
+
+8. Закажи бургер из McDonald's на обед, код 50001
+   Ожидается: zip=50001, brand=McDonald's, category=бургер, time_pref=обед
+
+9. Купить ноутбук MacBook Pro M3, доставка в 60001
+   Ожидается: zip=60001, brand=MacBook, category=ноутбук, time_pref=null
+
+10. Закажи букет роз на 8 марта, адрес 70001
+    Ожидается: zip=70001, brand=null, category=цветы, time_pref=8 марта
+
+11. Нужны таблетки от головной боли, код 80001
+    Ожидается: zip=80001, brand=null, category=лекарства, time_pref=null
+
+12. Вызови такси Uber на 9:00 утра, адрес 90001
+    Ожидается: zip=90001, brand=Uber, category=такси, time_pref=9:00 утра
+
+13. Нужны продукты: хлеб, молоко, яйца, доставка в 100001
+    Ожидается: zip=100001, brand=null, category=продукты, time_pref=null
+
+14. Pizza Hut пицца на сегодня в 20:30, ZIP 110001
+    Ожидается: zip=110001, brand=Pizza Hut, category=пицца, time_pref=сегодня в 20:30
+
+15. Купи игрушку LEGO для ребенка, код 120001
+    Ожидается: zip=120001, brand=LEGO, category=игрушка, time_pref=null
+
+Граничные случаи:
+-----------------
+
+16. Закажи пиццу из Papa John's
+    Ожидается: zip=null, brand=Papa John's, category=пицца, time_pref=null
+
+17. Нужна пицца на завтра, ZIP 130001
+    Ожидается: zip=130001, brand=null, category=пицца, time_pref=завтра
+
+18. Закажи что-то из KFC, код 140001
+    Ожидается: zip=140001, brand=KFC, category=null, time_pref=null
+
+19. Order pizza from Domino's tomorrow at 6 PM, ZIP 90210
+    Ожидается: zip=90210, brand=Domino's, category=pizza, time_pref=tomorrow at 6 PM
+
+20. Закажи большую пиццу Пепперони из Domino's на завтра в 18:30, доставка по адресу с почтовым кодом 150001
+    Ожидается: zip=150001, brand=Domino's, category=пицца, time_pref=завтра в 18:30
+
+Некорректные случаи:
+--------------------
+
+21. (пустой текст)
+    Ожидается: ошибка "Missing text"
+
+22. Привет, как дела?
+    Ожидается: zip=null, brand=null, category=null, time_pref=null
+
+Примеры команд для тестирования:
+--------------------------------
+
+curl:
+curl -X POST http://localhost:3000/classify -H "Content-Type: application/json" -d "{\"text\": \"Закажи пиццу из Domino's на завтра в 18:00, ZIP 90210\"}"
+
+PowerShell:
+Invoke-WebRequest -Uri "http://localhost:3000/classify" -Method POST -ContentType "application/json" -Body '{"text": "Закажи пиццу из Domino'\''s на завтра в 18:00, ZIP 90210"}'
+
+JavaScript:
+fetch('http://localhost:3000/classify', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ text: 'Закажи пиццу из Domino\'s на завтра в 18:00, ZIP 90210' })
+})
+
+Примечания:
+-----------
+- Все ZIP коды являются примерными
+- Время может быть указано в различных форматах
+- Бренды могут быть написаны по-разному
+- Категории товаров могут варьироваться
+- API поддерживает русский и английский языки
