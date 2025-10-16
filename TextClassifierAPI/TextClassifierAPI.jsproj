@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NodejsTools.MSBuild/1.0">
+
+  <PropertyGroup>
+    <ProjectGuid>{F1B3E987-7C12-4A65-8F99-9F6E1E5E1234}</ProjectGuid>
+    <RootNamespace>TextClassifierAPI</RootNamespace>
+    <ProjectHome>.</ProjectHome>
+    <OutDir>bin\</OutDir>
+    <WorkingDirectory>$(ProjectDir)</WorkingDirectory>
+    <TargetFrameworkVersion>v18.0</TargetFrameworkVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="server.js" />
+    <Content Include="package.json" />
+    <Content Include=".env" />
+    <Content Include="README.md" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\NodeJsTools\Microsoft.NodejsTools.targets" />
+</Project>
